@@ -1,0 +1,28 @@
+﻿@model IEnumerable<LTWeb09_BTM1.Models.SACH>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="text-align:center">LIST BOOK</h2>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card" style="width: 100%;">
+                <img src="@Url.Content("~/Content/images/" + item.ANHBIA)"
+                     class="card-img-top"
+                     alt="@item.TENSACH"
+                     style="height: 350px; object-fit: cover;"> <div class="card-body">
+                <p class="card-text">
+                    <strong>Tiêu đề: @item.TENSACH</strong>
+                </p>
+                @Html.ActionLink( "Xem chi tiết", "ChiTietSach", new { id = item.MASACH })
+</div>
+            </div>
+        </div>
+    }
+</div>
+
+
+

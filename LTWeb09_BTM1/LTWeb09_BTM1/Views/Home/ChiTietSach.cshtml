@@ -1,0 +1,25 @@
+﻿@model LTWeb09_BTM1.Models.SACH
+
+@{
+    ViewBag.Title = "ChiTietSach";
+}
+<h2 style="text-align:center">CHI TIẾT SẢN PHẨM</h2>
+
+<div style="display: flex; flex-direction: column; gap: 10px; width: 100%; border:solid 2px gray">
+    <div style="display: flex;">
+        <div>
+            <img src="@Url.Content("~/Content/images/" + Model.ANHBIA)" style="width:120px;" />
+        </div>
+        <div>
+            <div style="font-weight: bold;">Tên sách: @Html.DisplayFor(model => model.TENSACH)</div>
+            <div>Mô tả: @Html.DisplayFor(model => model.MOTA)</div>
+            <div>Giá bán: @String.Format("{0:0,0}", Model.GIABAN) VND</div>
+            <div>Chủ đề: @Html.DisplayFor(model => model.CHUDE.TENCHUDE)</div>
+            <div>Nhà xuất bản: @Html.DisplayFor(model => model.NHAXUATBAN.TENNXH)</div>
+        </div>
+    </div>
+</div>
+<hr />
+<p>
+    @Html.ActionLink( "Cập nhật", "Edit", new { id = Model.MASACH })
+</p>

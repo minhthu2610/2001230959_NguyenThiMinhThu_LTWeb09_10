@@ -1,0 +1,13 @@
+﻿@model IEnumerable<LTWeb09_BTM1.Models.CHUDE>
+@{
+    ViewBag.Title = "DSMenu_ChuDe";
+}
+<ul class="nav flex-column">
+    @foreach (var item in Model)
+    {
+        <li>
+            @Html.ActionLink(item.TENCHUDE, "SachTheoCD", "Home", new { id = item.MACD }, new { @class = "nav-link" })
+        </li>
+    }
+</ul>
+

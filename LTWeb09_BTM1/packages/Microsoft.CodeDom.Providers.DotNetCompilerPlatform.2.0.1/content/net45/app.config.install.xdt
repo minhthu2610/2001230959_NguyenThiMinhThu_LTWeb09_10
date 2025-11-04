@@ -1,0 +1,36 @@
+ 
+            annotation with the given name has already been configured.
+            </remarks>
+            <param name="name">The annotation name, which must be a valid C#/EDM identifier.</param>
+            <param name="value">The annotation value, which may be a string or some other type that
+            can be serialized with an <see cref="T:System.Data.Entity.Infrastructure.IMetadataAnnotationSerializer"/></param>.
+            <returns>The same configuration instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:System.Data.Entity.ModelConfiguration.Configuration.ConventionTypeConfiguration.MapToStoredProcedures">
+            <summary>
+            Configures this type to use stored procedures for insert, update and delete.
+            The default conventions for procedure and parameter names will be used.
+            </summary>
+            <returns> The same configuration instance so that multiple calls can be chained. </returns>
+        </member>
+        <member name="M:System.Data.Entity.ModelConfiguration.Configuration.ConventionTypeConfiguration.MapToStoredProcedures(System.Action{System.Data.Entity.ModelConfiguration.Configuration.ConventionModificationStoredProceduresConfiguration})">
+            <summary>
+            Configures this type to use stored procedures for insert, update and delete.
+            </summary>
+            <param name="modificationStoredProceduresConfigurationAction">
+            Configuration to override the default conventions for procedure and parameter names.
+            </param>
+            <returns> The same configuration instance so that multiple calls can be chained. </returns>
+        </member>
+        <member name="M:System.Data.Entity.ModelConfiguration.Configuration.ConventionTypeConfiguration.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Data.Entity.ModelConfiguration.Configuration.ConventionTypeConfiguration.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Data.Entity.ModelConfiguration.Configuration.ConventionTypeConfiguration.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Data.Entity.ModelConfiguration.Configuration.ConventionTypeConfiguration.GetType">
+            <summary>
+            Gets the <see cref="T:System.Type"/

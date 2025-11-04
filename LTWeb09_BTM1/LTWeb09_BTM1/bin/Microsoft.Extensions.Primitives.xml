@@ -1,0 +1,1142 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Extensions.Primitives</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Extensions.Primitives.CancellationChangeToken">
+            <summary>
+            A <see cref="T:Microsoft.Extensions.Primitives.IChangeToken"/> implementation using <see cref="T:System.Threading.CancellationToken"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.CancellationChangeToken.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a new instance of <see cref="T:Microsoft.Extensions.Primitives.CancellationChangeToken"/>.
+            </summary>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/>.</param>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.CancellationChangeToken.ActiveChangeCallbacks">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.CancellationChangeToken.HasChanged">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.CancellationChangeToken.RegisterChangeCallback(System.Action{System.Object},System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.Extensions.Primitives.ChangeToken">
+            <summary>
+            Propagates notifications that a change has occurred.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.ChangeToken.OnChange(System.Func{Microsoft.Extensions.Primitives.IChangeToken},System.Action)">
+            <summary>
+            Registers the <paramref name="changeTokenConsumer"/> action to be called whenever the token produced changes.
+            </summary>
+            <param name="changeTokenProducer">Produces the change token.</param>
+            <param name="changeTokenConsumer">Action called when the token changes.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.ChangeToken.OnChange``1(System.Func{Microsoft.Extensions.Primitives.IChangeToken},System.Action{``0},``0)">
+            <summary>
+            Registers the <paramref name="changeTokenConsumer"/> action to be called whenever the token produced changes.
+            </summary>
+            <param name="changeTokenProducer">Produces the change token.</param>
+            <param name="changeTokenConsumer">Action called when the token changes.</param>
+            <param name="state">state for the consumer.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Extensions.Primitives.CompositeChangeToken">
+            <summary>
+            An <see cref="T:Microsoft.Extensions.Primitives.IChangeToken"/> which represents one or more <see cref="T:Microsoft.Extensions.Primitives.IChangeToken"/> instances.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.CompositeChangeToken.#ctor(System.Collections.Generic.IReadOnlyList{Microsoft.Extensions.Primitives.IChangeToken})">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.Extensions.Primitives.CompositeChangeToken"/>.
+            </summary>
+            <param name="changeTokens">The list of <see cref="T:Microsoft.Extensions.Primitives.IChangeToken"/> to compose.</param>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.CompositeChangeToken.ChangeTokens">
+            <summary>
+            Returns the list of <see cref="T:Microsoft.Extensions.Primitives.IChangeToken"/> which compose the current <see cref="T:Microsoft.Extensions.Primitives.CompositeChangeToken"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.CompositeChangeToken.RegisterChangeCallback(System.Action{System.Object},System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.CompositeChangeToken.HasChanged">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.CompositeChangeToken.ActiveChangeCallbacks">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.Extensions.Primitives.Extensions">
+            <summary>
+            Provides extensions methods for the <see cref="N:Microsoft.Extensions.Primitives"/> namespace.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.Extensions.Append(System.Text.StringBuilder,Microsoft.Extensions.Primitives.StringSegment)">
+            <summary>
+            Add the given <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to the <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to add to.</param>
+            <param name="segment">The <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to add.</param>
+            <returns>The original <see cref="T:System.Text.StringBuilder"/>.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.Primitives.IChangeToken">
+            <summary>
+            Propagates notifications that a change has occurred.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.IChangeToken.HasChanged">
+            <summary>
+            Gets a value that indicates if a change has occurred.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.IChangeToken.ActiveChangeCallbacks">
+            <summary>
+            Indicates if this token will pro-actively raise callbacks. If <c>false</c>, the token consumer must
+            poll <see cref="P:Microsoft.Extensions.Primitives.IChangeToken.HasChanged" /> to detect changes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback(System.Action{System.Object},System.Object)">
+            <summary>
+            Registers for a callback that will be invoked when the entry has changed.
+            <see cref="P:Microsoft.Extensions.Primitives.IChangeToken.HasChanged"/> MUST be set before the callback is invoked.
+            </summary>
+            <param name="callback">The <see cref="T:System.Action`1"/> to invoke.</param>
+            <param name="state">State to be passed into the callback.</param>
+            <returns>An <see cref="T:System.IDisposable"/> that is used to unregister the callback.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.Primitives.InplaceStringBuilder">
+            <summary>
+            Provides a mechanism for fast, non-allocating string concatenation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.InplaceStringBuilder.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Extensions.Primitives.InplaceStringBuilder"/> class.
+            </summary>
+            <param name="capacity">The suggested starting size of the <see cref="T:Microsoft.Extensions.Primitives.InplaceStringBuilder"/> instance.</param>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.InplaceStringBuilder.Capacity">
+            <summary>
+            Gets the number of characters that the current <see cref="T:Microsoft.Extensions.Primitives.InplaceStringBuilder"/> object can contain.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.InplaceStringBuilder.Append(System.String)">
+            <summary>
+            Appends a string to the end of the current <see cref="T:Microsoft.Extensions.Primitives.InplaceStringBuilder"/> instance.
+            </summary>
+            <param name="value">The string to append.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.InplaceStringBuilder.Append(Microsoft.Extensions.Primitives.StringSegment)">
+            <summary>
+            Appends a string segment to the end of the current <see cref="T:Microsoft.Extensions.Primitives.InplaceStringBuilder"/> instance.
+            </summary>
+            <param name="segment">The string segment to append.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.InplaceStringBuilder.Append(System.String,System.Int32,System.Int32)">
+            <summary>
+            Appends a substring to the end of the current <see cref="T:Microsoft.Extensions.Primitives.InplaceStringBuilder"/> instance.
+            </summary>
+            <param name="value">The string that contains the substring to append.</param>
+            <param name="offset">The starting position of the substring within value.</param>
+            <param name="count">The number of characters in value to append.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.InplaceStringBuilder.Append(System.Char)">
+            <summary>
+            Appends a character to the end of the current <see cref="T:Microsoft.Extensions.Primitives.InplaceStringBuilder"/> instance.
+            </summary>
+            <param name="c">The character to append.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.InplaceStringBuilder.ToString">
+            <summary>
+            Converts the value of this instance to a String.
+            </summary>
+            <returns>A string whose value is the same as this instance.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.Primitives.StringSegment">
+            <summary>
+            An optimized representation of a substring.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Extensions.Primitives.StringSegment.Empty">
+            <summary>
+            A <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> for <see cref="F:System.String.Empty"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.#ctor(System.String)">
+            <summary>
+            Initializes an instance of the <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> struct.
+            </summary>
+            <param name="buffer">
+            The original <see cref="T:System.String"/>. The <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> includes the whole <see cref="T:System.String"/>.
+            </param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance of the <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> struct.
+            </summary>
+            <param name="buffer">The original <see cref="T:System.String"/> used as buffer.</param>
+            <param name="offset">The offset of the segment within the <paramref name="buffer"/>.</param>
+            <param name="length">The length of the segment.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="buffer"/> is <see langword="null" />.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="offset"/> or <paramref name="length"/> is less than zero, or <paramref name="offset"/> +
+            <paramref name="length"/> is greater than the number of characters in <paramref name="buffer"/>.
+            </exception>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.StringSegment.Buffer">
+            <summary>
+            Gets the <see cref="T:System.String"/> buffer for this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.StringSegment.Offset">
+            <summary>
+            Gets the offset within the buffer for this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.StringSegment.Length">
+            <summary>
+            Gets the length of this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.StringSegment.Value">
+            <summary>
+            Gets the value of this segment as a <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.StringSegment.HasValue">
+            <summary>
+            Gets whether this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> contains a valid value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.StringSegment.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:System.Char"/> at a specified position in the current <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            </summary>
+            <param name="index">The offset into the <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/></param>
+            <returns>The <see cref="T:System.Char"/> at a specified position.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="index"/> is greater than or equal to <see cref="P:Microsoft.Extensions.Primitives.StringSegment.Length"/> or less than zero.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.AsSpan">
+            <summary>
+            Gets a <see cref="T:System.ReadOnlySpan`1"/> from the current <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            </summary>
+            <returns>The <see cref="T:System.ReadOnlySpan`1"/> from this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.AsSpan(System.Int32)">
+            <summary>
+            Gets a <see cref="T:System.ReadOnlySpan`1"/> from the current <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> that starts
+            at the position specified by <paramref name="start"/>, and has the remaining length.
+            </summary>
+            <param name="start">The zero-based starting character position in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> with the remaining chars that begins at <paramref name="start"/> in
+            this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="start"/> is greater than or equal to <see cref="P:Microsoft.Extensions.Primitives.StringSegment.Length"/> or less than zero.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.AsSpan(System.Int32,System.Int32)">
+            <summary>
+            Gets a <see cref="T:System.ReadOnlySpan`1"/> from the current <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> that starts
+            at the position specified by <paramref name="start"/>, and has the specified <paramref name="length"/>.
+            </summary>
+            <param name="start">The zero-based starting character position in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</param>
+            <param name="length">The number of characters in the span.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> with <paramref name="length"/> that begins at
+            <paramref name="start"/> in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="start"/> or <paramref name="length"/> is less than zero, or <paramref name="start"/> + <paramref name="length"/> is
+            greater than <see cref="P:Microsoft.Extensions.Primitives.StringSegment.Length"/>.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.AsMemory">
+            <summary>
+            Gets a <see cref="T:System.ReadOnlyMemory`1"/> from the current <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            </summary>
+            <returns>The <see cref="T:System.ReadOnlyMemory`1"/> from this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.Compare(Microsoft.Extensions.Primitives.StringSegment,Microsoft.Extensions.Primitives.StringSegment,System.StringComparison)">
+            <summary>
+            Compares substrings of two specified <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> objects using the specified rules,
+            and returns an integer that indicates their relative position in the sort order.
+            </summary>
+            <param name="a">The first <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to compare.</param>
+            <param name="b">The second <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to compare.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules for the comparison.</param>
+            <returns>
+            A 32-bit signed integer indicating the lexical relationship between the two comparands.
+            The value is negative if <paramref name="a"/> is less than <paramref name="b"/>, 0 if the two comparands are equal,
+            and positive if <paramref name="a"/> is greater than <paramref name="b"/>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.Equals(System.Object)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="obj">An object to compare with this object.</param>
+            <returns><see langword="true" /> if the current object is equal to the other parameter; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.Equals(Microsoft.Extensions.Primitives.StringSegment)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns><see langword="true" /> if the current object is equal to the other parameter; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.Equals(Microsoft.Extensions.Primitives.StringSegment,System.StringComparison)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules to use in the comparison.</param>
+            <returns><see langword="true" /> if the current object is equal to the other parameter; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.Equals(Microsoft.Extensions.Primitives.StringSegment,Microsoft.Extensions.Primitives.StringSegment,System.StringComparison)">
+            <summary>
+            Determines whether two specified <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> objects have the same value. A parameter specifies the culture, case, and
+            sort rules used in the comparison.
+            </summary>
+            <param name="a">The first <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to compare.</param>
+            <param name="b">The second <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to compare.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules for the comparison.</param>
+            <returns><see langword="true" /> if the objects are equal; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.Equals(System.String)">
+            <summary>
+            Checks if the specified <see cref="T:System.String"/> is equal to the current <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            </summary>
+            <param name="text">The <see cref="T:System.String"/> to compare with the current <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</param>
+            <returns><see langword="true" /> if the specified <see cref="T:System.String"/> is equal to the current <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.Equals(System.String,System.StringComparison)">
+            <summary>
+            Checks if the specified <see cref="T:System.String"/> is equal to the current <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            </summary>
+            <param name="text">The <see cref="T:System.String"/> to compare with the current <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules to use in the comparison.</param>
+            <returns><see langword="true" /> if the specified <see cref="T:System.String"/> is equal to the current <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.op_Equality(Microsoft.Extensions.Primitives.StringSegment,Microsoft.Extensions.Primitives.StringSegment)">
+            <summary>
+            Checks if two specified <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> have the same value.
+            </summary>
+            <param name="left">The first <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to compare, or <see langword="null" />.</param>
+            <param name="right">The second <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to compare, or <see langword="null" />.</param>
+            <returns><see langword="true" /> if the value of <paramref name="left"/> is the same as the value of <paramref name="right"/>; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.op_Inequality(Microsoft.Extensions.Primitives.StringSegment,Microsoft.Extensions.Primitives.StringSegment)">
+            <summary>
+            Checks if two specified <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> have different values.
+            </summary>
+            <param name="left">The first <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to compare, or <see langword="null" />.</param>
+            <param name="right">The second <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to compare, or <see langword="null" />.</param>
+            <returns><see langword="true" /> if the value of <paramref name="left"/> is different from the value of <paramref name="right"/>; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.op_Implicit(System.String)~Microsoft.Extensions.Primitives.StringSegment">
+            <summary>
+            Creates a new <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> from the given <see cref="T:System.String"/>.
+            </summary>
+            <param name="value">The <see cref="T:System.String"/> to convert to a <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/></param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.op_Implicit(Microsoft.Extensions.Primitives.StringSegment)~System.ReadOnlySpan{System.Char}">
+            <summary>
+            Creates a see <see cref="T:System.ReadOnlySpan`1"/> from the given <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            </summary>
+            <param name="segment">The <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to convert to a <see cref="T:System.ReadOnlySpan`1"/>.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.op_Implicit(Microsoft.Extensions.Primitives.StringSegment)~System.ReadOnlyMemory{System.Char}">
+            <summary>
+            Creates a see <see cref="T:System.ReadOnlyMemory`1"/> from the given <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            </summary>
+            <param name="segment">The <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to convert to a <see cref="T:System.ReadOnlyMemory`1"/>.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.StartsWith(System.String,System.StringComparison)">
+            <summary>
+            Checks if the beginning of this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> matches the specified <see cref="T:System.String"/> when compared using the specified <paramref name="comparisonType"/>.
+            </summary>
+            <param name="text">The <see cref="T:System.String"/>to compare.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules to use in the comparison.</param>
+            <returns><see langword="true" /> if <paramref name="text"/> matches the beginning of this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>; otherwise, <see langword="false" />.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="text"/> is <see langword="null" />.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.EndsWith(System.String,System.StringComparison)">
+            <summary>
+            Checks if the end of this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> matches the specified <see cref="T:System.String"/> when compared using the specified <paramref name="comparisonType"/>.
+            </summary>
+            <param name="text">The <see cref="T:System.String"/>to compare.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules to use in the comparison.</param>
+            <returns><see langword="true" /> if <paramref name="text"/> matches the end of this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>; otherwise, <see langword="false" />.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="text"/> is <see langword="null" />.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.Substring(System.Int32)">
+            <summary>
+            Retrieves a substring from this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            The substring starts at the position specified by <paramref name="offset"/> and has the remaining length.
+            </summary>
+            <param name="offset">The zero-based starting character position of a substring in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</param>
+            <returns>A <see cref="T:System.String"/> that is equivalent to the substring of remaining length that begins at
+            <paramref name="offset"/> in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="offset"/> is greater than or equal to <see cref="P:Microsoft.Extensions.Primitives.StringSegment.Length"/> or less than zero.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.Substring(System.Int32,System.Int32)">
+            <summary>
+            Retrieves a substring from this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            The substring starts at the position specified by <paramref name="offset"/> and has the specified <paramref name="length"/>.
+            </summary>
+            <param name="offset">The zero-based starting character position of a substring in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</param>
+            <param name="length">The number of characters in the substring.</param>
+            <returns>A <see cref="T:System.String"/> that is equivalent to the substring of <paramref name="length"/> that begins at
+            <paramref name="offset"/> in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="offset"/> or <paramref name="length"/> is less than zero, or <paramref name="offset"/> + <paramref name="length"/> is
+            greater than <see cref="P:Microsoft.Extensions.Primitives.StringSegment.Length"/>.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.Subsegment(System.Int32)">
+            <summary>
+            Retrieves a <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> that represents a substring from this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            The <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> starts at the position specified by <paramref name="offset"/>.
+            </summary>
+            <param name="offset">The zero-based starting character position of a substring in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</param>
+            <returns>A <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> that begins at <paramref name="offset"/> in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>
+            whose length is the remainder.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="offset"/> is greater than or equal to <see cref="P:Microsoft.Extensions.Primitives.StringSegment.Length"/> or less than zero.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.Subsegment(System.Int32,System.Int32)">
+            <summary>
+            Retrieves a <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> that represents a substring from this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            The <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> starts at the position specified by <paramref name="offset"/> and has the specified <paramref name="length"/>.
+            </summary>
+            <param name="offset">The zero-based starting character position of a substring in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</param>
+            <param name="length">The number of characters in the substring.</param>
+            <returns>A <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> that is equivalent to the substring of <paramref name="length"/> that begins at <paramref name="offset"/> in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="offset"/> or <paramref name="length"/> is less than zero, or <paramref name="offset"/> + <paramref name="length"/> is
+            greater than <see cref="P:Microsoft.Extensions.Primitives.StringSegment.Length"/>.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.IndexOf(System.Char,System.Int32,System.Int32)">
+            <summary>
+            Gets the zero-based index of the first occurrence of the character <paramref name="c"/> in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            The search starts at <paramref name="start"/> and examines a specified number of <paramref name="count"/> character positions.
+            </summary>
+            <param name="c">The Unicode character to seek.</param>
+            <param name="start">The zero-based index position at which the search starts. </param>
+            <param name="count">The number of characters to examine.</param>
+            <returns>The zero-based index position of <paramref name="c"/> from the beginning of the <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> if that character is found, or -1 if it is not.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="start"/> or <paramref name="count"/> is less than zero, or <paramref name="start"/> + <paramref name="count"/> is
+            greater than <see cref="P:Microsoft.Extensions.Primitives.StringSegment.Length"/>.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.IndexOf(System.Char,System.Int32)">
+            <summary>
+            Gets the zero-based index of the first occurrence of the character <paramref name="c"/> in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            The search starts at <paramref name="start"/>.
+            </summary>
+            <param name="c">The Unicode character to seek.</param>
+            <param name="start">The zero-based index position at which the search starts. </param>
+            <returns>The zero-based index position of <paramref name="c"/> from the beginning of the <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> if that character is found, or -1 if it is not.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="start"/> is greater than or equal to <see cref="P:Microsoft.Extensions.Primitives.StringSegment.Length"/> or less than zero.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.IndexOf(System.Char)">
+            <summary>
+            Gets the zero-based index of the first occurrence of the character <paramref name="c"/> in this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            </summary>
+            <param name="c">The Unicode character to seek.</param>
+            <returns>The zero-based index position of <paramref name="c"/> from the beginning of the <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> if that character is found, or -1 if it is not.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.IndexOfAny(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Reports the zero-based index of the first occurrence in this instance of any character in a specified array
+            of Unicode characters. The search starts at a specified character position and examines a specified number
+            of character positions.
+            </summary>
+            <param name="anyOf">A Unicode character array containing one or more characters to seek.</param>
+            <param name="startIndex">The search starting position.</param>
+            <param name="count">The number of character positions to examine.</param>
+            <returns>The zero-based index position of the first occurrence in this instance where any character in <paramref name="anyOf"/>
+            was found; -1 if no character in <paramref name="anyOf"/> was found.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="anyOf"/> is <see langword="null" />.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="startIndex"/> or <paramref name="count"/> is less than zero, or <paramref name="startIndex"/> + <paramref name="count"/> is
+            greater than <see cref="P:Microsoft.Extensions.Primitives.StringSegment.Length"/>.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.IndexOfAny(System.Char[],System.Int32)">
+            <summary>
+            Reports the zero-based index of the first occurrence in this instance of any character in a specified array
+            of Unicode characters. The search starts at a specified character position.
+            </summary>
+            <param name="anyOf">A Unicode character array containing one or more characters to seek.</param>
+            <param name="startIndex">The search starting position.</param>
+            <returns>The zero-based index position of the first occurrence in this instance where any character in <paramref name="anyOf"/>
+            was found; -1 if no character in <paramref name="anyOf"/> was found.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="startIndex"/> is greater than or equal to <see cref="P:Microsoft.Extensions.Primitives.StringSegment.Length"/> or less than zero.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.IndexOfAny(System.Char[])">
+            <summary>
+            Reports the zero-based index of the first occurrence in this instance of any character in a specified array
+            of Unicode characters.
+            </summary>
+            <param name="anyOf">A Unicode character array containing one or more characters to seek.</param>
+            <returns>The zero-based index position of the first occurrence in this instance where any character in <paramref name="anyOf"/>
+            was found; -1 if no character in <paramref name="anyOf"/> was found.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.LastIndexOf(System.Char)">
+            <summary>
+            Reports the zero-based index position of the last occurrence of a specified Unicode character within this instance.
+            </summary>
+            <param name="value">The Unicode character to seek.</param>
+            <returns>The zero-based index position of value if that character is found, or -1 if it is not.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.Trim">
+            <summary>
+            Removes all leading and trailing whitespaces.
+            </summary>
+            <returns>The trimmed <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.TrimStart">
+            <summary>
+            Removes all leading whitespaces.
+            </summary>
+            <returns>The trimmed <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.TrimEnd">
+            <summary>
+            Removes all trailing whitespaces.
+            </summary>
+            <returns>The trimmed <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.Split(System.Char[])">
+            <summary>
+            Splits a string into <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>s that are based on the characters in an array.
+            </summary>
+            <param name="chars">A character array that delimits the substrings in this string, an empty array that
+            contains no delimiters, or null.</param>
+            <returns>An <see cref="T:Microsoft.Extensions.Primitives.StringTokenizer"/> whose elements contain the <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>s from this instance
+            that are delimited by one or more characters in <paramref name="chars"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.IsNullOrEmpty(Microsoft.Extensions.Primitives.StringSegment)">
+            <summary>
+            Indicates whether the specified <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> is null or an Empty string.
+            </summary>
+            <param name="value">The <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to test.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegment.ToString">
+            <summary>
+            Returns the <see cref="T:System.String"/> represented by this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> or <see cref="F:System.String.Empty" /> if the <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> does not contain a value.
+            </summary>
+            <returns>The <see cref="T:System.String"/> represented by this <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> or <see cref="F:System.String.Empty" /> if the <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> does not contain a value.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.Primitives.StringSegmentComparer">
+            <summary>
+            Compares two <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> objects.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.StringSegmentComparer.Ordinal">
+            <summary>
+            Gets a <see cref="T:Microsoft.Extensions.Primitives.StringSegmentComparer"/> object that performs a case-sensitive ordinal <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> comparison.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.StringSegmentComparer.OrdinalIgnoreCase">
+            <summary>
+            Gets a <see cref="T:Microsoft.Extensions.Primitives.StringSegmentComparer"/> object that performs a case-insensitive ordinal <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> comparison.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegmentComparer.Compare(Microsoft.Extensions.Primitives.StringSegment,Microsoft.Extensions.Primitives.StringSegment)">
+            <summary>
+            Compares two <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> objects and returns an indication of their relative sort order.
+            </summary>
+            <param name="x">The first <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to compare.</param>
+            <param name="y">The second <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to compare.</param>
+            <returns>A 32-bit signed integer that indicates the lexical relationship between the two comparands.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegmentComparer.Equals(Microsoft.Extensions.Primitives.StringSegment,Microsoft.Extensions.Primitives.StringSegment)">
+            <summary>
+            Determines whether two <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> objects are equal.
+            </summary>
+            <param name="x">The first <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to compare.</param>
+            <param name="y">The second <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to compare.</param>
+            <returns><see langword="true"/> if the two <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> objects are equal; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringSegmentComparer.GetHashCode(Microsoft.Extensions.Primitives.StringSegment)">
+            <summary>
+            Returns a hash code for a <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> object.
+            </summary>
+            <param name="obj">The <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to get a hash code for.</param>
+            <returns>A hash code for a <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.Primitives.StringTokenizer">
+            <summary>
+            Tokenizes a <see cref="T:System.String"/> into <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>s.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringTokenizer.#ctor(System.String,System.Char[])">
+            <summary>
+            Initializes a new instance of <see cref="T:Microsoft.Extensions.Primitives.StringTokenizer"/>.
+            </summary>
+            <param name="value">The <see cref="T:System.String"/> to tokenize.</param>
+            <param name="separators">The characters to tokenize by.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringTokenizer.#ctor(Microsoft.Extensions.Primitives.StringSegment,System.Char[])">
+            <summary>
+            Initializes a new instance of <see cref="T:Microsoft.Extensions.Primitives.StringTokenizer"/>.
+            </summary>
+            <param name="value">The <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> to tokenize.</param>
+            <param name="separators">The characters to tokenize by.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringTokenizer.GetEnumerator">
+            <summary>
+            Initializes a new instance of <see cref="T:Microsoft.Extensions.Primitives.StringTokenizer.Enumerator"/>.
+            </summary>
+            <returns>An <see cref="T:Microsoft.Extensions.Primitives.StringTokenizer.Enumerator"/> based on the <see cref="T:Microsoft.Extensions.Primitives.StringTokenizer"/>'s value and separators.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.Primitives.StringTokenizer.Enumerator">
+            <summary>
+            Enumerates the <see cref="T:System.String"/> tokens represented by <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringTokenizer.Enumerator.#ctor(Microsoft.Extensions.Primitives.StringTokenizer@)">
+            <summary>
+            Initializes an <see cref="T:Microsoft.Extensions.Primitives.StringTokenizer.Enumerator"/> using a <see cref="T:Microsoft.Extensions.Primitives.StringTokenizer"/>.
+            </summary>
+            <param name="tokenizer"><see cref="T:Microsoft.Extensions.Primitives.StringTokenizer"/> containing value and separators for enumeration.</param>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.StringTokenizer.Enumerator.Current">
+            <summary>
+            Gets the current <see cref="T:Microsoft.Extensions.Primitives.StringSegment"/> from the <see cref="T:Microsoft.Extensions.Primitives.StringTokenizer"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringTokenizer.Enumerator.Dispose">
+            <summary>
+            Releases all resources used by the <see cref="T:Microsoft.Extensions.Primitives.StringTokenizer.Enumerator"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringTokenizer.Enumerator.MoveNext">
+            <summary>
+            Advances the enumerator to the next token in the <see cref="T:Microsoft.Extensions.Primitives.StringTokenizer"/>.
+            </summary>
+            <returns><see langword="true"/> if the enumerator was successfully advanced to the next token; <see langword="false"/> if the enumerator has passed the end of the <see cref="T:Microsoft.Extensions.Primitives.StringTokenizer"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringTokenizer.Enumerator.Reset">
+            <summary>
+            Resets the <see cref="T:Microsoft.Extensions.Primitives.StringTokenizer.Enumerator"/> to its initial state.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.Primitives.StringValues">
+            <summary>
+            Represents zero/null, one, or many strings in an efficient way.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Extensions.Primitives.StringValues.Empty">
+            <summary>
+            A readonly instance of the <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> struct whose value is an empty string array.
+            </summary>
+            <remarks>
+            In application code, this field is most commonly used to safely represent a <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> that has null string values.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> structure using the specified string.
+            </summary>
+            <param name="value">A string value or <c>null</c>.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> structure using the specified array of strings.
+            </summary>
+            <param name="values">A string array.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Implicit(System.String)~Microsoft.Extensions.Primitives.StringValues">
+            <summary>
+            Defines an implicit conversion of a given string to a <see cref="T:Microsoft.Extensions.Primitives.StringValues"/>.
+            </summary>
+            <param name="value">A string to implicitly convert.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Implicit(System.String[])~Microsoft.Extensions.Primitives.StringValues">
+            <summary>
+            Defines an implicit conversion of a given string array to a <see cref="T:Microsoft.Extensions.Primitives.StringValues"/>.
+            </summary>
+            <param name="values">A string array to implicitly convert.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Implicit(Microsoft.Extensions.Primitives.StringValues)~System.String">
+            <summary>
+            Defines an implicit conversion of a given <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to a string, with multiple values joined as a comma separated string.
+            </summary>
+            <remarks>
+            Returns <c>null</c> where <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> has been initialized from an empty string array or is <see cref="F:Microsoft.Extensions.Primitives.StringValues.Empty"/>.
+            </remarks>
+            <param name="values">A <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to implicitly convert.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Implicit(Microsoft.Extensions.Primitives.StringValues)~System.String[]">
+            <summary>
+            Defines an implicit conversion of a given <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to a string array.
+            </summary>
+            <param name="value">A <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to implicitly convert.</param>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.StringValues.Count">
+            <summary>
+            Gets the number of <see cref="T:System.String"/> elements contained in this <see cref="T:Microsoft.Extensions.Primitives.StringValues" />.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.StringValues.System#Collections#Generic#IList{System#String}#Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:System.String"/> at index.
+            </summary>
+            <value>The string at the specified index.</value>
+            <param name="index">The zero-based index of the element to get.</param>
+            <exception cref="T:System.NotSupportedException">Set operations are not supported on readonly <see cref="T:Microsoft.Extensions.Primitives.StringValues"/>.</exception>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.StringValues.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:System.String"/> at index.
+            </summary>
+            <value>The string at the specified index.</value>
+            <param name="index">The zero-based index of the element to get.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.ToString">
+            <summary>
+            Converts the value of the current <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> object to its equivalent string representation, with multiple values joined as a comma separated string.
+            </summary>
+            <returns>A string representation of the value of the current <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> object.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.ToArray">
+            <summary>
+            Creates a string array from the current <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> object.
+            </summary>
+            <returns>A string array represented by this instance.</returns>
+            <remarks>
+            <para>If the <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> contains a single string internally, it is copied to a new array.</para>
+            <para>If the <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> contains an array internally it returns that array instance.</para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.System#Collections#Generic#IList{System#String}#IndexOf(System.String)">
+            <summary>
+            Returns the zero-based index of the first occurrence of an item in the <see cref="T:Microsoft.Extensions.Primitives.StringValues" />.
+            </summary>
+            <param name="item">The string to locate in the <see cref="T:Microsoft.Extensions.Primitives.StringValues"></see>.</param>
+            <returns>the zero-based index of the first occurrence of <paramref name="item" /> within the <see cref="T:Microsoft.Extensions.Primitives.StringValues"></see>, if found; otherwise, -1.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.System#Collections#Generic#ICollection{System#String}#Contains(System.String)">
+            <summary>Determines whether a string is in the <see cref="T:Microsoft.Extensions.Primitives.StringValues" />.</summary>
+            <param name="item">The <see cref="T:System.String"/> to locate in the <see cref="T:Microsoft.Extensions.Primitives.StringValues" />.</param>
+            <returns>true if <paramref name="item">item</paramref> is found in the <see cref="T:Microsoft.Extensions.Primitives.StringValues" />; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.System#Collections#Generic#ICollection{System#String}#CopyTo(System.String[],System.Int32)">
+            <summary>
+            Copies the entire <see cref="T:Microsoft.Extensions.Primitives.StringValues" />to a string array, starting at the specified index of the target array.
+            </summary>
+            <param name="array">The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied from. The <see cref="T:System.Array" /> must have zero-based indexing.</param>
+            <param name="arrayIndex">The zero-based index in the destination array at which copying begins.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="array">array</paramref> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="arrayIndex">arrayIndex</paramref> is less than 0.</exception>
+            <exception cref="T:System.ArgumentException">The number of elements in the source <see cref="T:Microsoft.Extensions.Primitives.StringValues"></see> is greater than the available space from <paramref name="arrayIndex">arrayIndex</paramref> to the end of the destination <paramref name="array">array</paramref>.</exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.GetEnumerator">
+            <summary>Retrieves an object that can iterate through the individual strings in this <see cref="T:Microsoft.Extensions.Primitives.StringValues" />.</summary>
+            <returns>An enumerator that can be used to iterate through the <see cref="T:Microsoft.Extensions.Primitives.StringValues" />.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.System#Collections#Generic#IEnumerable{System#String}#GetEnumerator">
+            <inheritdoc cref="M:Microsoft.Extensions.Primitives.StringValues.GetEnumerator" />
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:Microsoft.Extensions.Primitives.StringValues.GetEnumerator" />
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.IsNullOrEmpty(Microsoft.Extensions.Primitives.StringValues)">
+            <summary>
+            Indicates whether the specified <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> contains no string values.
+            </summary>
+            <param name="value">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to test.</param>
+            <returns>true if <paramref name="value">value</paramref> contains a single null or empty string or an empty array; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Concat(Microsoft.Extensions.Primitives.StringValues,Microsoft.Extensions.Primitives.StringValues)">
+            <summary>
+            Concatenates two specified instances of <see cref="T:Microsoft.Extensions.Primitives.StringValues"/>.
+            </summary>
+            <param name="values1">The first <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to concatenate.</param>
+            <param name="values2">The second <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to concatenate.</param>
+            <returns>The concatenation of <paramref name="values1"/> and <paramref name="values2"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Concat(Microsoft.Extensions.Primitives.StringValues@,System.String)">
+            <summary>
+            Concatenates specified instance of <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> with specified <see cref="T:System.String"/>.
+            </summary>
+            <param name="values">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to concatenate.</param>
+            <param name="value">The <see cref="T:System.String" /> to concatenate.</param>
+            <returns>The concatenation of <paramref name="values"/> and <paramref name="value"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Concat(System.String,Microsoft.Extensions.Primitives.StringValues@)">
+            <summary>
+            Concatenates specified instance of <see cref="T:System.String"/> with specified <see cref="T:Microsoft.Extensions.Primitives.StringValues"/>.
+            </summary>
+            <param name="value">The <see cref="T:System.String" /> to concatenate.</param>
+            <param name="values">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to concatenate.</param>
+            <returns>The concatenation of <paramref name="values"/> and <paramref name="values"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Equals(Microsoft.Extensions.Primitives.StringValues,Microsoft.Extensions.Primitives.StringValues)">
+            <summary>
+            Determines whether two specified <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> objects have the same values in the same order.
+            </summary>
+            <param name="left">The first <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <param name="right">The second <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <returns><c>true</c> if the value of <paramref name="left"/> is the same as the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Equality(Microsoft.Extensions.Primitives.StringValues,Microsoft.Extensions.Primitives.StringValues)">
+            <summary>
+            Determines whether two specified <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> have the same values.
+            </summary>
+            <param name="left">The first <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <param name="right">The second <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <returns><c>true</c> if the value of <paramref name="left"/> is the same as the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Inequality(Microsoft.Extensions.Primitives.StringValues,Microsoft.Extensions.Primitives.StringValues)">
+            <summary>
+            Determines whether two specified <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> have different values.
+            </summary>
+            <param name="left">The first <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <param name="right">The second <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <returns><c>true</c> if the value of <paramref name="left"/> is different to the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Equals(Microsoft.Extensions.Primitives.StringValues)">
+            <summary>
+            Determines whether this instance and another specified <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> object have the same values.
+            </summary>
+            <param name="other">The string to compare to this instance.</param>
+            <returns><c>true</c> if the value of <paramref name="other"/> is the same as the value of this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Equals(System.String,Microsoft.Extensions.Primitives.StringValues)">
+            <summary>
+            Determines whether the specified <see cref="T:System.String"/> and <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> objects have the same values.
+            </summary>
+            <param name="left">The <see cref="T:System.String"/> to compare.</param>
+            <param name="right">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <returns><c>true</c> if the value of <paramref name="left"/> is the same as the value of <paramref name="right"/>; otherwise, <c>false</c>. If <paramref name="left"/> is <c>null</c>, the method returns <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Equals(Microsoft.Extensions.Primitives.StringValues,System.String)">
+            <summary>
+            Determines whether the specified <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> and <see cref="T:System.String"/> objects have the same values.
+            </summary>
+            <param name="left">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <param name="right">The <see cref="T:System.String"/> to compare.</param>
+            <returns><c>true</c> if the value of <paramref name="left"/> is the same as the value of <paramref name="right"/>; otherwise, <c>false</c>. If <paramref name="right"/> is <c>null</c>, the method returns <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Equals(System.String)">
+            <summary>
+            Determines whether this instance and a specified <see cref="T:System.String"/>, have the same value.
+            </summary>
+            <param name="other">The <see cref="T:System.String"/> to compare to this instance.</param>
+            <returns><c>true</c> if the value of <paramref name="other"/> is the same as this instance; otherwise, <c>false</c>. If <paramref name="other"/> is <c>null</c>, returns <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Equals(System.String[],Microsoft.Extensions.Primitives.StringValues)">
+            <summary>
+            Determines whether the specified string array and <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> objects have the same values.
+            </summary>
+            <param name="left">The string array to compare.</param>
+            <param name="right">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <returns><c>true</c> if the value of <paramref name="left"/> is the same as the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Equals(Microsoft.Extensions.Primitives.StringValues,System.String[])">
+            <summary>
+            Determines whether the specified <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> and string array objects have the same values.
+            </summary>
+            <param name="left">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <param name="right">The string array to compare.</param>
+            <returns><c>true</c> if the value of <paramref name="left"/> is the same as the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Equals(System.String[])">
+            <summary>
+            Determines whether this instance and a specified string array have the same values.
+            </summary>
+            <param name="other">The string array to compare to this instance.</param>
+            <returns><c>true</c> if the value of <paramref name="other"/> is the same as this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Equality(Microsoft.Extensions.Primitives.StringValues,System.String)">
+            <inheritdoc cref="M:Microsoft.Extensions.Primitives.StringValues.Equals(Microsoft.Extensions.Primitives.StringValues,System.String)" />
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Inequality(Microsoft.Extensions.Primitives.StringValues,System.String)">
+            <summary>
+            Determines whether the specified <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> and <see cref="T:System.String"/> objects have different values.
+            </summary>
+            <param name="left">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <param name="right">The <see cref="T:System.String"/> to compare.</param>
+            <returns><c>true</c> if the value of <paramref name="left"/> is different to the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Equality(System.String,Microsoft.Extensions.Primitives.StringValues)">
+            <inheritdoc cref="M:Microsoft.Extensions.Primitives.StringValues.Equals(System.String,Microsoft.Extensions.Primitives.StringValues)" />
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Inequality(System.String,Microsoft.Extensions.Primitives.StringValues)">
+            <summary>
+            Determines whether the specified <see cref="T:System.String"/> and <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> objects have different values.
+            </summary>
+            <param name="left">The <see cref="T:System.String"/> to compare.</param>
+            <param name="right">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <returns><c>true</c> if the value of <paramref name="left"/> is different to the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Equality(Microsoft.Extensions.Primitives.StringValues,System.String[])">
+            <inheritdoc cref="M:Microsoft.Extensions.Primitives.StringValues.Equals(Microsoft.Extensions.Primitives.StringValues,System.String[])" />
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Inequality(Microsoft.Extensions.Primitives.StringValues,System.String[])">
+            <summary>
+            Determines whether the specified <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> and string array have different values.
+            </summary>
+            <param name="left">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <param name="right">The string array to compare.</param>
+            <returns><c>true</c> if the value of <paramref name="left"/> is different to the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Equality(System.String[],Microsoft.Extensions.Primitives.StringValues)">
+            <inheritdoc cref="M:Microsoft.Extensions.Primitives.StringValues.Equals(System.String[],Microsoft.Extensions.Primitives.StringValues)" />
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Inequality(System.String[],Microsoft.Extensions.Primitives.StringValues)">
+            <summary>
+            Determines whether the specified string array and <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> have different values.
+            </summary>
+            <param name="left">The string array to compare.</param>
+            <param name="right">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <returns><c>true</c> if the value of <paramref name="left"/> is different to the value of <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Equality(Microsoft.Extensions.Primitives.StringValues,System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> and <see cref="T:System.Object"/>, which must be a
+            <see cref="T:Microsoft.Extensions.Primitives.StringValues"/>, <see cref="T:System.String"/>, or array of <see cref="T:System.String"/>, have the same value.
+            </summary>
+            <param name="left">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <param name="right">The <see cref="T:System.Object"/> to compare.</param>
+            <returns><c>true</c> if the <paramref name="left"/> object is equal to the <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Inequality(Microsoft.Extensions.Primitives.StringValues,System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> and <see cref="T:System.Object"/>, which must be a
+            <see cref="T:Microsoft.Extensions.Primitives.StringValues"/>, <see cref="T:System.String"/>, or array of <see cref="T:System.String"/>, have different values.
+            </summary>
+            <param name="left">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <param name="right">The <see cref="T:System.Object"/> to compare.</param>
+            <returns><c>true</c> if the <paramref name="left"/> object is equal to the <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Equality(System.Object,Microsoft.Extensions.Primitives.StringValues)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/>, which must be a
+            <see cref="T:Microsoft.Extensions.Primitives.StringValues"/>, <see cref="T:System.String"/>, or array of <see cref="T:System.String"/>, and specified <see cref="T:Microsoft.Extensions.Primitives.StringValues"/>,  have the same value.
+            </summary>
+            <param name="left">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <param name="right">The <see cref="T:System.Object"/> to compare.</param>
+            <returns><c>true</c> if the <paramref name="left"/> object is equal to the <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.op_Inequality(System.Object,Microsoft.Extensions.Primitives.StringValues)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> and <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> object have the same values.
+            </summary>
+            <param name="left">The <see cref="T:System.Object"/> to compare.</param>
+            <param name="right">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to compare.</param>
+            <returns><c>true</c> if the <paramref name="left"/> object is equal to the <paramref name="right"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Equals(System.Object)">
+            <summary>
+            Determines whether this instance and a specified object have the same value.
+            </summary>
+            <param name="obj">An object to compare with this object.</param>
+            <returns><c>true</c> if the current object is equal to <paramref name="obj"/>; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+            </returns>
+        </member>
+        <member name="T:Microsoft.Extensions.Primitives.StringValues.Enumerator">
+            <summary>
+            Enumerates the string values of a <see cref="T:Microsoft.Extensions.Primitives.StringValues" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Enumerator.#ctor(Microsoft.Extensions.Primitives.StringValues@)">
+            <summary>
+            Instantiates an <see cref="T:Microsoft.Extensions.Primitives.StringValues.Enumerator"/> using a <see cref="T:Microsoft.Extensions.Primitives.StringValues"/>.
+            </summary>
+            <param name="values">The <see cref="T:Microsoft.Extensions.Primitives.StringValues"/> to enumerate.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Enumerator.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the <see cref="T:Microsoft.Extensions.Primitives.StringValues"/>.
+            </summary>
+            <returns><see langword="true"/> if the enumerator was successfully advanced to the next element; <see langword="false"/> if the enumerator has passed the end of the <see cref="T:Microsoft.Extensions.Primitives.StringValues"/>.</returns>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.StringValues.Enumerator.Current">
+            <summary>
+            Gets the element at the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.StringValues.Enumerator.Dispose">
+            <summary>
+            Releases all resources used by the <see cref="T:Microsoft.Extensions.Primitives.StringValues.Enumerator" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Internal.ChangeCallbackRegistrar.UnsafeRegisterChangeCallback``1(System.Action{System.Object},System.Object,System.Threading.CancellationToken,System.Action{``0},``0)">
+            <summary>
+            Registers for a callback that will be invoked when the entry has changed. <see cref="P:Microsoft.Extensions.Primitives.IChangeToken.HasChanged"/>
+            MUST be set before the callback is invoked.
+            </summary>
+            <param name="callback">The callback to invoke.</param>
+            <param name="state">State to be passed into the callback.</param>
+            <param name="token">The <see cref="T:System.Threading.CancellationToken"/> to invoke the callback with.</param>
+            <param name="onFailure">The action to execute when an <see cref="T:System.ObjectDisposedException"/> is thrown. Should be used to set the IChangeToken's ActiveChangeCallbacks property to false.</param>
+            <param name="onFailureState">The state to be passed into the <paramref name="onFailure"/> action.</param>
+            <returns>The <see cref="T:System.Threading.CancellationToken"/> registration.</returns>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.GetPinnableReference">
+            <summary>
+            Get a pinnable reference to the builder.
+            Does not ensure there is a null char after <see cref="P:System.Text.ValueStringBuilder.Length"/>
+            This overload is pattern matched in the C# 7.3+ compiler so you can omit
+            the explicit method call, and write eg "fixed (char* c = builder)"
+            </summary>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.GetPinnableReference(System.Boolean)">
+            <summary>
+            Get a pinnable reference to the builder.
+            </summary>
+            <param name="terminate">Ensures that the builder has a null char after <see cref="P:System.Text.ValueStringBuilder.Length"/></param>
+        </member>
+        <member name="P:System.Text.ValueStringBuilder.RawChars">
+            <summary>Returns the underlying storage of the builder.</summary>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.AsSpan(System.Boolean)">
+            <summary>
+            Returns a span around the contents of the builder.
+            </summary>
+            <param name="terminate">Ensures that the builder has a null char after <see cref="P:System.Text.ValueStringBuilder.Length"/></param>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Grow(System.Int32)">
+            <summary>
+            Resize the internal buffer either by doubling current buffer size or
+            by adding <paramref name="additionalCapacityBeyondPos"/> to
+            <see cref="F:System.Text.ValueStringBuilder._pos"/> whichever is greater.
+            </summary>
+            <param name="additionalCapacityBeyondPos">
+            Number of chars requested beyond current position.
+            </param>
+        </member>
+        <member name="P:System.SR.Argument_InvalidOffsetLength">
+            <summary>Offset and length are out of bounds for the string or length is greater than the number of characters from index to the end of the string.</summary>
+        </member>
+        <member name="P:System.SR.Argument_InvalidOffsetLengthStringSegment">
+            <summary>Offset and length are out of bounds for this StringSegment or length is greater than the number of characters to the end of this StringSegment.</summary>
+        </member>
+        <member name="P:System.SR.Capacity_CannotChangeAfterWriteStarted">
+            <summary>Cannot change capacity after write started.</summary>
+        </member>
+        <member name="P:System.SR.Capacity_NotEnough">
+            <summary>Not enough capacity to write '{0}' characters, only '{1}' left.</summary>
+        </member>
+        <member name="P:System.SR.Capacity_NotUsedEntirely">
+            <summary>Entire reserved capacity was not used. Capacity: '{0}', written '{1}'.</summary>
+        </member>
+        <member name="T:System.Runtime.InteropServices.LibraryImportAttribute">
+            <summary>
+            Attribute used to indicate a source generator should create a function for marshalling
+            arguments instead of relying on the runtime to generate an equivalent marshalling function at run-time.
+            </summary>
+            <remarks>
+            This attribute is meaningless if the source generator associated with it is not enabled.
+            The current built-in source generator only supports C# and only supplies an implementation when
+            applied to static, partial, non-generic methods.
+            </remarks>
+        </member>
+        <member name="M:System.Runtime.InteropServices.LibraryImportAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Runtime.InteropServices.LibraryImportAttribute"/>.
+            </summary>
+            <param name="libraryName">Name of the library containing the import.</param>
+        </member>
+        <member name="P:System.Runtime.InteropServices.LibraryImportAttribute.LibraryName">
+            <summary>
+            Gets the name of the library containing the import.
+            </summary>
+        </member>
+        <member name="P:System.Runtime.InteropServices.LibraryImportAttribute.EntryPoint">
+            <summary>
+            Gets or sets the name of the entry point to be called.
+            </summary>
+        </member>
+        <member name="P:System.Runtime.InteropServices.LibraryImportAttribute.StringMarshalling">
+            <summary>
+            Gets or sets how to marshal string arguments to the method.
+            </summary>
+            <remarks>
+            If this field is set to a value other than <see cref="F:System.Runtime.InteropServices.StringMarshalling.Custom" />,
+            <see cref="P:System.Runtime.InteropServices.LibraryImportAttribute.StringMarshallingCustomType" /> must not be specified.
+            </remarks>
+        </member>
+        <member name="P:System.Runtime.InteropServices.LibraryImportAttribute.StringMarshallingCustomType">
+            <summary>
+            Gets or sets the <see cref="T:System.Type"/> used to control how string arguments to the method are marshalled.
+            </summary>
+            <remarks>
+            If this field is specified, <see cref="P:System.Runtime.InteropServices.LibraryImportAttribute.StringMarshalling" /> must not be specified
+            or muÉÒ`>ô
+óğFÿfúÏÜ‘İ­Ğ 6b¡~wNùhÚÖò¡Ãz-«®™U‘æ{a½ÃØê³Î‘ÛŒÚ}Ü>m·3HuÍÎ½Ã(§³sSoôö²½[£ñæş4ªÑÓúšŒçŒ³Î/Æ²Ô¶6ª´ºĞ¶Ú›ÚnÂ*e+ÆËtë§´é”Ïqê²øSœÙ‰EİN>²°axŸ²É;ÚŸ~¿¡ƒ·eì;ÿl‡I!£7d†š,Éfä¾LˆÚ±qı€°¢Ø;Úlê­±ßnÁ5ÃôœB‚şì„øÉFĞÿPğ•pñ¼nœÀ§¼/Âœ(šn@s	âš*Ÿtı€&"~”%ñÒîÀë0|
+î%¤aÒ8Ic å.A}k }”¿´o!ığ-‚z«Ñ3ğƒp@º\xÖ„w/ õ‚|_(ÿÚÒ‚¬ğ?v´ÀË÷ïñµ 0yï¿ÃİÂFÿ‰ïd&tşÏÜ'õVg³—'FeÈ?ëz)‚*øÿw½/ç¡Jÿ¿Ë£ŠÜ÷ïóÁvQÿŒf<°ú;=1µ(^îŸtÆ<Cn‡?E—wÿÏ]2‡ ¸ÍŸxeŞB³ßqÌ´§ûO}34(Şë¯¹gøB+ş>¯Ãöÿœaë‡
+aÅÿßCXIzşB¸b+û+ˆB`Øç¯:!ÚŸù!ºÁºÚÿŸrE„*ıv§~ì@;ëßw.SjE?÷î‚"öî@¼ Å,×‡Ø^¹i‚ÿ'nDSebåşsOb?(óOºs’¡Ï¿îÑÙlBş^§ÊµìG~>ÀÆÿïrí0Yß¿Ï»Sìzı5Ï9`aó'>[Øãêæ‰ƒB6âéYìÿÜÙC£É]•DÄSÅ‰*“8eSY’c6•Ç‰©8±sØ’lOÏÉÌnrj2dÑ\H±T®ˆŠ¾Ü‹ˆá˜‰b{¨b¤‘,JtmşÂD(’û©\"ô…HÈJÈÚ  ¯£ò)Bn2„¼PPğ…¤'@+ îi¤D‚ÄÎò 6–šHD’"^\I”J|9™ÅäC^J
+‡OMO fÂ%;ªDÄ:ùT¯ ª€PÜUf² UDMâù^SM¾ÜrÂ…ìo[Ü[æô ²›+¨é\%¡4¾†*€ÒB(Í± [P™BQMF#9·Æ ‚®P½\èÑN^¼­P«DE1‹4R ê 
+Š£ŠˆXB JL„º-•Uo`Ç$ b¹/tƒ×€/–à2!Ù f|ŞL…€ø„°¦F0e¬!$K#9üœš-³•IRÿy!'Ûoªqùu‰Ö«šOŠä#ß<ˆ‹AòB"ÉY ‹•‘êˆ´(!D&~*³)r¢©Ø/u/AN÷âª{¶’€pj<Â<ØmIm
+¢rPŒÈœÍ¡ÀGÑH(O¢ÚHk šj -4RGiX"•ETõTNwI±^M1A2–è;•1™Sa2ó·º*3+²V¢0âfyó©ßE6ÛÀTe%‚°¨!àòƒ˜hh™ÚÓ4©¤
+GD»ú+‘‡—Lür³üÇÔA­Q»5Í„&ÚæÁ–›T­íŠòZZU¢ØÔí88Ã…°©#è£l 8‹—*‚©H#ÙÿŠ$aî(Ÿ˜8ÁCçˆ¡‘PKˆa©0‚Ô„D4D,ˆìE†ˆ`+äOm‡ñƒĞkğ_&rXIÒÒÒúQûññ (4’‰O“:PÓa€©04ñ›C…‰Ÿ mwF±í¶lIp;
+‘¤Õ¨%‰L04Lj:‡Ç³MBß? †JbôÀ3lËN„5‚zâ`^Êš)‹¾“³5YEF#µZ+™EL4µ'¡¤¥ ‹–Ú
+C*1¸©(€\&cÔ44’†4 0 9MÁS­1y¼DW(IŸĞœ¦ï5´P1İ[[c¥,Á6³da½ÍC€l=0\ï“‰˜J$›p‚i³"ä-f&ÁºÈc² {R{}ôM””È…iÖ<7‰…x[‰í¶”n5iOÀJâH'a ëŠß§‘ºüœ’Fr',ø²ˆlµ–JĞH€iƒèàR ½‘NiÙDLR£Şúœ¤‘¢=ØlÄ‹P?ÂJIì"•& /¶Ãø@|^¦œv´¶ˆ¤‹”h˜5Ybn¥ã&’}5§IR bzœI#ù£B€ƒŞÔ…¸÷!A$H–IÓŒlÒQ9YDı”’­D?›ÙIF¸ü”/¾×Ë9?ô•î{>±Ç ˆô®¹HÑwn÷¬Ğ{¸#+|x®ÓME«…cëk²Ø®ì2İEŸ=yÌ<?vóª L}Şè€=öÂ)ñ½Ïd¶ßğõ]ïÄÎÏ¼õıîØ–¶ea½²Îˆ—>šP¶+¿.şô­÷a½S¿7ãæ:(O½¹hTœ°6oõNÿ¹ï&¾Š¬sKºı`öñì}Xø¤ÈiÈM-ûmtÅ0Ş5pYã‹î½ÕY~±CÆÄ†Vß°põQÅ9è~Ä»{ŒGL,º[‰qp‹ÅÀj`ãkÍå³á**6$‚æÁÏô
+‹„´&rì~z	eÇçˆc~‚šÂÃÄÒßRA¯©²ß«iå%ûÍÉ+®¥¼y¼`PtÉ7Í8"~½¾šùŸ«ù‡_$¢²ßıÔ‹ä—&ğïÒ%7zaR}9o(PTÈ}Y´‚‚~!
+%± }à(È€z(VĞI=]Ä¯ï`µ”g_P=JpLÂr†ÊÊ£»ô¢|ÿó8pìA%ĞN|$'(tğ‹GÑRğ2#JE?>œeşn"r‹x­£¨÷ÍòNëï9İA¿ó½—ı9‚3'8w†tä.Mnò? ×øÏ¯ˆÁ†é5ñL!ÚÙ7¯`ÂÕ€¨‘_7JR	j¡ôÈ'ßC6Ñ>Y¾=+7Ëá¯´·;¦!WGqÌnŠ…—#”w†·=<¹€ÔœàÇàZ•hŸ	”ErFu	ç&O®·åªyzPûr1;¨#¨ÉµŒèR 4â’ §wôL+@†¿/WäP¡nÄŸ*ÇGD`¨5¨/ÈİÁ&~µ îj‰~†Ji%N\^“Ìøk#0}¨y_"•pØÿ\*¡İ4 ñ²Th•PJNôîÑ±Õ ;ßòüv¤4ÎHZ²‚úA%<q"Xwxv~tÂCç¥í	'Nøë‹Ïqğ‰f tŞ@é”öD)òİˆ’(Ã\!$½÷@rŒ#œ<ÔVÛ‹ÃµÍåc1ìœœİ:÷ìÖWxıÓvËñ7ì–Aó¿v«5»Õó¸İÊÿ`·lˆu¿¹D3]® Û@ü”ÔÿÚ¸ÿ×êk¨ô÷QPÊÿ¾ş¿{¿qI&cxnïqJªÖşo5HÊä²ÜŞ$&“Htu\UI±›¦Y_Ãƒ”Ôº)‘(¤\2‰RÖï‰wKi‹«*°2Ê"r6†Ë•£´÷f×<¸ÔüŞ.Ós¾äÓN6j››–åêæá¹”½x®Âª22‰LÖq€ælZ=*y\R×v~D7áM#)BÒ‰)DR”tÈ‘ºŞ!*:jÑ‡[±€O×Â5Q¢²r8‡,à³éqC”¢¦Óz8!İï‚òt:6çGÀÙ–!f&§PÃ¼<ğÎ4èÎ¸îBwqrut¨«ŠçTı#-ÓÀÕQ¾º%84,œn›KĞÎ|/n
+ºğføP}!İ=]}¼lpG[º£#İ7•ôÈ°ÕIñ\’‰¼„IŠ˜B.©-(IœK"aKG:\éuçÊº»—jGØ4®ØÒÁ:ïÉeŞ— k§¦®z÷ùŞ‡Œá›÷zo
+4wÙï½Òu\ÀC«³¿DVçÏYipöåêµÓ	"+ş¨ÂÊ½]ı/–øß¸34a'åó»SRõîÜ~^ ÕÔ©Áõüíté3ì6gÉø”IûÄ“û†¦öÎ<Â¨«®ù¨´Æiô>íäÃ^åm\:1tÀ°FGÁˆîåóçÉùl=\åä1•ôÇfY}#c‹K·6ÏrÜ]ø}X›8E—u—ÖÕ<Ÿ­ÈÜn´UcÎë«ç²³ã<üfòD5Û©[ãîÿZ’c¾ât^Ç7‚n¤U‘ü¯U£É Ñ¤Å¹$Uˆ"n"5Ò¤èQÚç=¤:¾J{ÕQ\x%xjCç¥CF%tÈÈ”Ò×Ënoêøîr¸oŠÚ“>Ó>Vu[·×©ª-ºP‚ñ@< Ì¯Ì§À+Q,NéngÇòhÉ²q¢±Év)I\”j—"ùõ‘]Ó0¢Q$´’$x%˜ƒŠŠÊ$%ï‹ûËpœ\ĞSZAzzzk€óêÇœÅ¸j¯9¥®&c© òÍ„uxíªŸb³&Vï9ÒïÀ“ƒ‹šË¼ò(lä£|jÄÖÌMìùÆ«­óS¿vò#²¼şâIm|ï´7+„Ônj©é“­õº0­ŞïÍ0ÃŞœZî°kgé¤-Iº/¬yëÍSNÌeYF©tŠ/¼QñÅğ|£bÅİ“%oÇ¬ğµê¤sàò°ò“]:]!4;]ÊåõÖáÇšì0c¿Æá)[ßbœİ^º®›ğ¼ÌÓ-L|	kÏUİršÓÑtû~yN9ÒËN>ßLsH˜Ü£`¹ö~ĞüàÚî~‹M)aÎó½ößãY¿ €gÖ­Ûy¯Ê§mïï=¦ôX¿Ó[|º=2õ 3öÌØùf3Fê3{ÅÓ”¨/Ç”‘ó„Ôç[3–ùSÜX2éõåóá:ˆÁMà#gi³!s¥»Úãt°^È¹Ğé¸½Åsòşo2)¹ÂÈi˜®NjP{È`°š¢Ûóš3Oí«›ô`‰†b§ş»z^´º>aK"?páèš9µn+^¸:éİ3Zı±2éš*ş¬ºóMŞ»¾s"‹ı™N¨`áX;‹î7¯í‰>Nö._^….Ñ_R•Y“=··YÉ¾Ó‚ócî{M¹síå™{•ñO(İ‹–E_S¸jsÀàk7·ŠÁ;#¿\¸¡X´Êáæ’QôeÁµQ'õè‰½ó““_==O|Ê1X°EÅĞjtaíËQi®&çFŒ|]½uø‚½E¯sœr—‰kÉ"
+Æ.6ß±rÂz·Ø®%ú7¶Şó›±½Ÿ=Ùïñ÷]j)ıRïiÏM{4¶¸½‰Z¹Î[¦Ì01A"ƒ[›¨
+rÖjŞİÉ¹Ñ•.f7Y±/vºÑ‰Ë#ğp”İ¦h‰îóíø8âöUÔéfoïæŠ;t‹wquŠ£³p['¶[¼­£İÙÖ•íÌ´uqdrœíÙldÊ[À£í9³Q¯?é°ÍAOokĞµ.x”Ä†â`ËÀøü‘eU-Å]mè¶ ³8aÊÙÀ¬ œìõ{6ğ¼Å­¼¤;Q·/êQû¼On¸rupç¼®‹ßŞUÍnó5ºnã¹Ëïcüë”ÆìYQ=;«qÊá<6Ãw¾û´vLWô
+K
+1_ùzŸš°(|az°U¡¥
+]ïòM¾xÕ¾!ºëK½CôlVg>İ964Ÿï÷lÇ¥3“¸šVyKk¯Y´´×tê¼Æ…ÚîYRÙÏ®,›o¯M&c§“–¹•T=]dÀ[mfoÙ«bR¼ÍGò¥<;Ó™3ŞFs¾.9ßĞO¥èÍ…Ï»Îï¢ú|ö
+Í|Êî4fhHı¾#Œ.ÎĞtÜ,o¤èÁaÏtíXz×ÃëN0&2#Şî™",}±³Ñè•Óó)İ‹3×ÅskÀà-‘<5¦CW}b»FÿÖÎÅæCMuf×	…/mØ¤Nz
+ xz'´q”KTmº-ŞMbÌšC¸ ®@¼` $ßTáP¥?"Î$¬»:Ğííénö`Íì¥¨=BÿMCû+¶A8 ¦ÎŞi4g(•êYšÆàõ2¸ 8vôÅÃ¤/ÅzZ·nvçéo±+³üõÆÏÓóBìªS´Ú„#•Ô€×ÏWNYZ›8|®Ÿò•Ïæ7ç§?¹Rä=æbÎÕWµ/—ñ¹¶vû-ËÄbıåK…¢¨Šî|v*–]H‹íœî“7ÖUï”hâ¶„ğ)K7pí®tRÿ2SlUŸfq½=>àİ™)qŸõ¥‡mµĞ¹Ó?)´Ò²49èâ^fï>ıx¹«ÒØ˜¨\KkEû-CY÷ÏØÆ½ğq¿¿Z{ã[¾àô É]²Vö}é{Ò¥§ë‚é1K;,˜r´İ´¨»W«Æ*œ•™°! ‘x[dtH¤¯E\>äÌW«–Y+£¶
+h`®­¤*=†è’(ŠcØÿ6¥‘—Ï§é!g»NœUW2´G]°¬gÍ%[¼SQ{2¥Mg5"‚*ô-l™æêÜ¡}¢,Šïšë|²®ScÌpg	&±e8˜Ï2¯2‚Ş¿oËš²… ÚÈV,BÎŠùã¾¸·œsı“š0h¾´j¿È$l€[¯1]}×>ôYo¿iØ#M;~EÀÛG±©O‚zØ^ôZ£şåhƒ-}±é±‘a%ÙÆƒW»Ûm[T5ïvÊöêï27ßözè1æH]›Ü£KçQm?¨‡í‹:n{»ï™š”û‹–Fİªır–ç¼¯=½]ĞÅ±guÔœçÓ±ÖKrë‹”^Ö‡¼›\~äÎÒ!‡ÎLÎ²<WÿásÆ…„c&_cŒ/š\k±!“å½¨ßñ÷‹ûG]ŸKöñ¶‹}}¥ò\®=ÿÓ’Y:wqï¯Xd³ãP7-MÎÔÒ«‹>hwUå¸½ÈêÒwûéº¨§2fwŒ9ì¤{½Ğ(`ªí5Ş†Oµtõ±Á×Ÿ(9¨út¬æäĞdM÷‘Vşó„§_ñì~œ²8zfô¨¢)eş
+ß\œ &^êüÄÖ®Ã¡{Bí×‚õ=rß‡o˜â Çé¬9ñºÖökÁ	ßsg;4dî£l<ûÑæf—‰V«}Ô±è³æÎûºc|·+õãí²ÎóqÈ“ª´ÌKjªÉ†Ùô.õš×ï–¼ë§µ†]ò5L6r§¢qVı,îŞÂi³O¹4×¸R#fŞóE•‰ym†ÙnOKÂŒf¯y©7â^ÙÖñ'‡UøÑíæ\»=Üı"6:Îïô‰ñ‡«;~ĞNÙ½Ø}-¹Ï°¯Ü¹³ëµ*´6º„©\Øëç*)ƒı~&³ßz‰’07ü7ì7î‚;â`±p7d¿éê€#ôß;ïÿÊz/,ç­¿yÕ¦õÈ$Z§ºÚúÛûKû™†­9q½cˆYÛ§§—ŸZ#Æ©í)Ÿ˜¥Pdà9³²$ïzKz0¢öñå¶o5)%Ï'ërÔÁlÜü—¯m>¸?ŞèáıÅå»MG¦|ğ9©zjÈÚSë<)‹Ş/ã&\´¼æËXWpê®¥/ÍbuAhdx›;
+6‡MŸóÇ½€Ïÿ0úBqÕãâÑïÎè¼RÙÂHßè3}¡?Ö×/¾…U|Eñ³J9}½Ï_ŞÎ¯½jîÂü'‘_HsŒÂTÆbZ¸ï“-7L}·ï³X¸¶s†=ıØÜ›=ò
+Ë™äMFë?½»tÂ$0âë{Å½{¨ê2ë½
+$²ügÖ»Õ“pë­%o½!ÃsJ$Æ7g:3¥uó[ÎZÂüÇÕ3W+s^yß²¥k‚Dı_+ëĞ8ÿ5Vÿ·Îî k­â‰{c¼¯7l\“~õDf¿`Òzšxø ä6:«Nì1­švN{Ñää¸êhòÑªNXéõ¬>õÑÛ×öŸcXgD*X½=ãå¤S{Öï˜¦¦xhŠıs†îõĞU3ïÜŸ2ì|öî{E/•ìÆ*4Ì°63IùøæÓŒRšÆ[åú”š!ó§&©	gU—»ÍK°İßOóa\Lo½’IÔŞõÊúöïÑû¦Ñİ»	Õ=Lqÿ:VMçæ5æÔç«;<
+™4f¿S·!‹w>ª¥î9âChü?²=ƒ3ˆÔA­½æ™+íK{nï_ekwÿıØ‚cı¢ÌO)â­v:÷&sçÊYqVÏÍµrTJ×;ìŞ9¹Kîsõƒ6ÛOzUİ}ÿxÔ¦ÛK*ÄNÕ!û‡›jwMSï>yø@_¯ö5UUë‚-ôüšiœ½@à©=DÿĞãS^İ¶¿ö?fsî’}vPWk³Ø£-»Q:ÿHwAm…X©İÓ4ãssw[Dl^?Ì}Bys#¿\gÙÎ•~ÏµŸ'Úó6|¹ÙïĞdÓÃñµóÆi³Éî¶kL«¾c|wÓº#¬Šç<ha«‹Ö-ÍXUU6;UÿòÌq:©&vö*ü²A“Íw–=Ë?b|áQçĞÃsÜzKâ&¨:Ä=tÿpyñ	ºÕWÍıƒb.”_ú`· 7-R/é°ÎâÏô\«Ix®Õ8pöâ0İş½ırë~“f/rY.Éí×¤
+¬ª@o#ï†4cêtM\>Wíe)t°JâÅ=†æ^18Ş>%e[Cøº’ÆŞığœ¹2mè9kğœ•e9Ó²s&ÿ…k½XâÑ.~Ğ5ºè±•^±áÉríaÇio'¸àAO.âÜèë¥\àÒÇ¸„$.ËaC*5-LÂ7Ë%—„í™ˆuŞÍïµx[:d<hëù7¢§•˜.íë“6úÂœ—š¯/Çe4v?Óß€‘•1š´ R‹»ö•Uÿ¡ôeOÒ/Ÿ¨ÇÃ½×6ÌèOŠX~h¥×Ğ¾ã³Ì[éòèqƒÏÎ†¤§ıâ§ŠzUÌ7[X5ôkT^Ã‘ïÜ{ëBBÓ²ó×Ùõì{Ù?sŒæ‹³eßÉvÄ¦wjİGıáV'†gb:Oı)Ş®ôôè× qã­kôSnø±ïú„§»oë]°äŞÁ©_ãÉéKmú>İ»@õÊ¥òÊ€)5ÇœÙšW3¯o÷›Z£İ¼y!yĞ¬ÚŞá¥9Oîµ94ÏVP9Pårnyn×J<—lÖ<øJô\².$µ#ô}ê¿¶¿hı²CNÛãåu]½ù~†•7å(ÒÛ"8ğœpG'{G|àwª>0cK¹Ö <©ú@EVô…gvnıf%@ºÒëd×gãN©?×!A°áˆrpÒşâ'Ö|Ö}Óa¥~àœ)wi#^ÙiÌß5dÆ£â³«ªúmZ5·K<W07nÀ’¨ìO=”0ñÃk19ÖıM–‰ïŒd³È_bŞE×Û0%öBPbÍ&¬ˆ„¹wÓGÇ„(c¯Gä¿2åv 0Ò¶{è¿»zë9ÌÂéWV«z©y[%årÚñçS7§ì÷ãÎ9Á1Zzõ©n]åÁU³ú<êtÙúœ¿Ã¦°±_Åê¢›‚Í¤YO³¿PÌt–V];£Âà±¿ŠeNTEZÏmInsVìKõùdåÌNriØuæ¼Š7z¹ÃÔ …µÂ“ñ^WM7Æâ¹f¹ÍÓŸB¢çš	!ßâbÌ‘Bcm‘‡ø“8
+2L7<¦ÅårBığrŒşMY
+õUŠNrßügKöo]™Xµ‘u1 |F´ÁÜàCó†+ZÄ¯,ËÕ˜	›v-Ø´¿“»,cûå\õèäJè[~TÕ¡I£ÿå¶Ä»J”»Ë9¼gtÂ9ã®ep5;Ğ	W3NoBÿK\Í…´+—îõ*¹lĞ–\Ñ?¸}·YùŸz¶£w6aO_[¥şƒ¯k/x¶*ŞÒñü(ëÈAÁ_îz±ál¸î¤ÍU*Õ“ÂÔ¯ù8LµìZeß‹›5©©}vdØ”F]ÚH»ŞËóıÀ.x%©ıÄu¹›ú•Õ's¾¼í¨6Oî¾|ÿ+gÛ§±6e3±õ†AõGß~53sqÚ®ëÅü:l>hè½ÜìÈèœ{÷è[õ.îu:ñéãş§
+l*¯iïŞ5qïSƒÂ:oôÈvÏø¸j'Ş«,½6|üÎ¬KÖ®)7˜|nô2­0­u‡ÙÆÑ>îó‹×Û•?Âymì¶±Ş<r[Û[ë4õ2—íôÇ€DFHÜ"æÈ-ÒìjnÒó ’ÜÎ¿ÔpÊóÚíy‰Çîgû¾^{Æï'q;Ã5ÕØê~;V8]âv¶³£}7G7+Ë!ŞÁÖŞÁÉÍÖÑ%ŞÙ–éÇ±uf¹²]œè,Ç8ç>ûn˜âÙÜ•\\L6%WI%Ïúñ½[«ÛjAŠˆØ¶Ëû„‘:Ç"`‹»Øâ®Ä¾)·oÄĞ³æ}»Ï/+øÎíü}bØÃÈUdˆäj9»‰İûøú6l/£ë1•“{Œ5Û4¿Ï…ÚøÕƒ¢.¿~Ğ}—O©VğÕÓïMë—£ú¼ª0øu£öZ‹ö+¶“òÎXùé¬¹ï‘4òxûÊ°ˆ
+ïsIû'U±:öeİ]ÿ¥}6{Ï¾Ì®îiŞ0tÃóÈ­×œú*Ú>â'°jœvÔ˜½ßuış¾g
+&aí7[¸ñ°%éÍ Í;U—¯éaò1½ÃëüÀ¤Â¥˜|ÏéÓ&ïÌ¬1¼¿r¶áB]gzÏÎıcÍT{.Qëâ ~áó©YGC·]qØ:ıíä2ÍºøY¥ï)E~©ç·{/P»¯HºçÔxíä´bàñ«ıŒ‘œÅ©ÆÓbl·z¾Š^±¸]¹E`¿ê-ŞÃğ¯â®â}ê³öE«,É½•2éšE bôÆ‰¦ŸIÂ’(¼íÂÕ¤¹k},ÍºQWã=ğ·ÓÄJCp5wòœŒõFJËCÜË­:8œô¦ò	i›ãt†¿ŞqJœïµÑw)uÖùí/>ó ÛmóëÚo]­ùôÍÑœ;õ%”ıõÚ_M›£;ˆòi‘ÿ‚÷/ŸÏ¹“4µFvxôÈ-ş+“ï\yÈÅ›]†ÔâXLByX7•òë®¯5×r…a³\{¤“:‡¯MŠÉ.£C½p…›`ßïö­AcfíúÜÁfUuØNİ†DÇE7‡/?ÁİÀ\ŞáZû‡8«œÎø8™#Gsúb)Pøv)Èÿ˜Zp¶Kl«Õï§›W:8}`pr“¸|œ	”ñàòù·W­\ò÷ë­dX`Î­zşA¨eH[s‰¿2W+ØqÛËÍızX'5[Y­äªO	Ø6fo›Î×]’h_Rîº§Tiİ!·ó¤ötÏ³42ÙãF5ã­]0¯!qÈ™›sÔlö®½¼¢[e–êÚ‹³ª¯ØŸöÀ>¼«¶İıU*a'«¼·¾´¦º*ñÕÑäWİcÊõ^ûn»åÊ^Íg;e,+cµµ=Û§ğİíÊçc2—Xİ×ØQ¦“¾£ÈıÙÇÛİju	²\”%¼¥İ}KÀKOxÍÈ»<bÃˆƒË½ÖOü`Bh¾şËr»w¦÷°­tè¿K¯/ög«Ü×oX;Óuô™ùÙ6!Q3ŒÌ÷ºñÙcÛæµ]ÓÉ4ÿèëm
+SŞÆ>?¾srÑ¸š]ÆbóØ–›YXºš—¸õu>9rıÌJCÓå+â3»«³˜;¾Ş|ğYãÀ^áû6E÷6Sx~:kİyÓÛ)ƒÛöóM¯z‡ÕÕ¬&çÆ^İ¥[Ukp.2ğ¾[yÛÓ€šÕŞ#}îìŞ+Ìº%¼ovs§oéşg{£¯æMy€/_5õæãA×~º¾.¾~wqÎˆ'Ş°Z®c¹lù¨„ì{ã2b7Øå_Œ³3İÒòÅ“ä½–Ól¦õq	İ]7Ö{Â>Õ ıç–zÙ‰g½å¿Ë ö·Ñ<tÖœ^¡ùWÖïpcAÈëÙëj|Ëx%gn]?¹ÉóWş¤†VœWÍ`«‹ÑO®ZxÅ¾s©É/sBÛîdút¯­íCê.?H?m:¶ş’eV"<´,¸,° à.WaŞÂ¬…ÉÚ´Åâ±ööÄb7Dn

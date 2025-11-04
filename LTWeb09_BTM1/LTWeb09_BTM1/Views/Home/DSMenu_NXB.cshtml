@@ -1,0 +1,14 @@
+﻿@model IEnumerable<LTWeb09_BTM1.Models.NHAXUATBAN>
+@{
+    ViewBag.Title = "DSMenu_NXB";
+}
+
+<ul class="nav flex-column">
+    @foreach (var item in Model)
+    {
+       <li>
+           @Html.ActionLink(item.TENNXH, "NXBTheoTen", "Home", new { ten = item.MANXB }, new { @class = "nav-link" })
+       </li>
+      }
+</ul>
+
