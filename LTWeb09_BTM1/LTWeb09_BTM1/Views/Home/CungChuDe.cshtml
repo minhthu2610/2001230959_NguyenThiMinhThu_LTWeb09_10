@@ -1,10 +1,7 @@
 ﻿@model IEnumerable<LTWeb09_BTM1.Models.SACH>
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "CungChuDe";
 }
-
-<h2 style="text-align:center">LIST BOOK</h2>
 <div class="row">
     @foreach (var item in Model)
     {
@@ -16,7 +13,7 @@
                      style="height: 350px; object-fit: cover;">
                 <div class="card-body text-center">
                     <p class="card-text fw-semibold">
-                        <strong>Tiêu đề: @item.TENSACH</strong>
+                        Tiêu đề: @item.TENSACH
                     </p>
                     @Html.ActionLink("Xem chi tiết", "ChiTietSach", new { id = item.MASACH })
                 </div>
@@ -24,6 +21,5 @@
         </div>
     }
 </div>
-
 
 

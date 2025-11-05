@@ -35,13 +35,12 @@ namespace LTWeb09_BTM1.Controllers
         }
         public ActionResult Index()
         {
-            List<SACH> dsSach = data.SACHes.OrderByDescending(s => s.NGAYCAPNHAT).Take(5).ToList();
+            List<SACH> dsSach = data.SACHes.OrderByDescending(s => s.NGAYCAPNHAT).Take(12).ToList();
             return View(dsSach);
         }
         public ActionResult ChiTietSach(int id)
         {
-            var sach = data.SACHes.Include(s => s.CHUDE).Include(s => s.NHAXUATBAN).SingleOrDefault(s => s.MASACH == id);
-
+            var sach = data.SACHes.Include(s => s.CHUDE).Include(s => s.NHAXUATBAN).Include("THAMGIAs.TACGIA").SingleOrDefault(s => s.MASACH == id);
             if (sach == null)
             {
                 Response.StatusCode = 404;
@@ -49,5 +48,31 @@ namespace LTWeb09_BTM1.Controllers
             }
             return View(sach);
         }
+        public ActionResult CungChuDe(int id)
+        {
+            var sach = data.SACHes.SingleOrDefault(s => s.MASACH == id);
+            if (sach == null) return HttpNotFound();
+
+            var cungChuDe = data.SACHes
+                .Where(s => s.MACD == sach.MACD && s.MASACH != id)
+                .Take(4)
+                .ToList();
+
+            return PartialView(cungChuDe);
+        }
+
+        public ActionResult CungNXB(int id)
+        {
+            var sach = data.SACHes.SingleOrDefault(s => s.MASACH == id);
+            if (sach == null) return HttpNotFound();
+
+            var cungNXB = data.SACHes
+                .Where(s => s.MANXB == sach.MANXB && s.MASACH != id)
+                .Take(4)
+                .ToList();
+
+            return PartialView(cungNXB);
+        }
+
     }
 }

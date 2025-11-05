@@ -279,10 +279,20 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\images\7thoiquen.png" />
     <Content Include="Content\images\anhbia.jpg" />
-    <Content Include="Content\images\hoquyly.jpg" />
-    <Content Include="Content\images\kinhvanhoa.jpg" />
-    <Content Include="Content\images\matbiec.jpg" />
+    <Content Include="Content\images\canhdongbattan.png" />
+    <Content Include="Content\images\harrypotter1.png" />
+    <Content Include="Content\images\hatgiongtamhon.png" />
+    <Content Include="Content\images\hoavang.png" />
+    <Content Include="Content\images\hoquyly.png" />
+    <Content Include="Content\images\kinhvanhoa.png" />
+    <Content Include="Content\images\matbiec.png" />
+    <Content Include="Content\images\matmadavinci.png" />
+    <Content Include="Content\images\rungnauy.png" />
+    <Content Include="Content\images\songcham.png" />
+    <Content Include="Content\images\toan12.png" />
+    <Content Include="Content\images\truyencotich.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -320,6 +330,8 @@
     <Content Include="Views\Home\DSMenu_NXB.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\ChiTietSach.cshtml" />
+    <Content Include="Views\Home\CungChuDe.cshtml" />
+    <Content Include="Views\Home\CungNXB.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

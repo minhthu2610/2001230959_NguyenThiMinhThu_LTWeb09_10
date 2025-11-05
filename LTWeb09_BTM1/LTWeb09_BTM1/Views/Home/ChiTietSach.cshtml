@@ -3,23 +3,40 @@
 @{
     ViewBag.Title = "ChiTietSach";
 }
-<h2 style="text-align:center">CHI TIẾT SẢN PHẨM</h2>
+<h3 style="text-align:center">Thông tin chi tiết sách</h3>
 
-<div style="display: flex; flex-direction: column; gap: 10px; width: 100%; border:solid 2px gray">
+<div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
     <div style="display: flex;">
         <div>
-            <img src="@Url.Content("~/Content/images/" + Model.ANHBIA)" style="width:120px;" />
+            <img src="@Url.Content("~/Content/images/" + Model.ANHBIA)" style="width: 80%;margin-left:20px;margin-right:20px" />
         </div>
         <div>
-            <div style="font-weight: bold;">Tên sách: @Html.DisplayFor(model => model.TENSACH)</div>
-            <div>Mô tả: @Html.DisplayFor(model => model.MOTA)</div>
-            <div>Giá bán: @String.Format("{0:0,0}", Model.GIABAN) VND</div>
-            <div>Chủ đề: @Html.DisplayFor(model => model.CHUDE.TENCHUDE)</div>
-            <div>Nhà xuất bản: @Html.DisplayFor(model => model.NHAXUATBAN.TENNXH)</div>
+            <div>Tên sách: @Html.DisplayFor(model => model.TENSACH)</div><br />
+            <div><strong>Mô tả:</strong> @Html.DisplayFor(model => model.MOTA)</div><br />
+            <div>Giá bán: @String.Format("{0:0,0}", Model.GIABAN) VND</div><br />
+            <div>
+                Các tác giả:<br />
+                <ul>
+                    @foreach (var tg in Model.THAMGIAs)
+                    {
+                        <li>@tg.TACGIA.TENTG - @tg.VAITRO</li>
+                    }
+                </ul>
+            </div>
         </div>
     </div>
 </div>
+<div style="text-align: right;">
+    <a href="@Url.Action("DatMua", "GioHang", new { id = Model.MASACH })" class="btn btn-danger">Đặt mua</a>
+</div>
 <hr />
-<p>
-    @Html.ActionLink( "Cập nhật", "Edit", new { id = Model.MASACH })
-</p>
+<div>
+    <h4>Các sản phẩm cùng chủ đề</h4>
+    @Html.Action("CungChuDe", "Home", new { id = Model.MASACH })
+</div>
+
+<hr />
+<div>
+    <h4>Các sản phẩm cùng nhà xuất bản</h4>
+    @Html.Action("CungNXB", "Home", new { id = Model.MASACH })
+</div>

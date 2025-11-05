@@ -3,6 +3,7 @@
     margin-top: 15px;
     padding-left: 15px;
     padding-right: 15px;
+    margin:auto;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -18,3 +19,164 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #e53935;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.logo h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+.navbar {
+    display: flex;
+    gap: 20px;
+}
+
+    .navbar a {
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+        .navbar a:hover {
+            color: #ffe082;
+        }
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+    .search-box input {
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+    }
+
+    .search-box button {
+        padding: 5px 10px;
+        border: none;
+        background-color: white;
+        color: #e53935;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .search-box button:hover {
+            background-color: #ffe082;
+            color: #b71c1c;
+        }
+/* Toàn bộ khu vực nội dung */
+.row {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Cột bên trái - danh mục */
+.col-md-3 {
+    background-color: #fff5f5;
+    border-right: 2px solid #f8d7da;
+    padding: 20px;
+    min-height: 600px;
+}
+
+    /* Tiêu đề */
+    .col-md-3 h4 {
+        color: #ffff;
+        background-color: palevioletred;
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #d32f2f;
+        padding: 10px;
+    }
+
+    /* Danh sách từ Html.Action (thường là <ul><li><a>...) */
+    .col-md-3 ul {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+
+    .col-md-3 li {
+        margin-bottom: 8px;
+        border-bottom: 2px solid palevioletred;
+    }
+
+    .col-md-3 a {
+        text-decoration: none;
+        color: #333;
+        transition: 0.3s;
+        display: inline-block;
+        padding: 4px 0;
+    }
+
+        .col-md-3 a:hover {
+            color: #e53935;
+            font-weight: 500;
+        }
+
+/* Cột bên phải */
+.col-md-9 {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+    /* Ảnh bìa chính */
+    .col-md-9 img {
+        border-radius: 5px;
+        object-fit: cover;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    /* Dòng kẻ dưới ảnh */
+    .col-md-9 hr {
+        border-top: 2px solid #e0e0e0;
+        margin: 20px 0;
+    }
+footer {
+    background-color: palevioletred;
+    text-align:center;
+    color:#fff5f5;
+}
+.card-body a {
+    text-decoration: none;
+}
+/* ===== Tổng thể lưới sách ===== */
+.card {
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 25px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    }
+
+    .card-body a:hover {
+        text-decoration: none;
+    }
