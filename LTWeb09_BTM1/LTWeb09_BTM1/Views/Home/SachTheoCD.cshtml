@@ -1,0 +1,30 @@
+﻿@model IEnumerable<LTWeb09_BTM1.Models.SACH>
+
+<h3 class="text-center mb-4">SÁCH THEO CHỦ ĐỀ</h3>
+
+@if (ViewBag.ThongBao != null)
+{
+    <p class="text-danger text-center">@ViewBag.ThongBao</p>
+}
+else
+{
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm border-0">
+                <img src="@Url.Content("~/Content/images/" + item.ANHBIA)"
+                     class="card-img-top"
+                     alt="@item.TENSACH"
+                     style="height: 350px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <p class="card-text fw-semibold">
+                        <strong>Tiêu đề: @item.TENSACH</strong>
+                    </p>
+                    @Html.ActionLink("Xem chi tiết", "ChiTietSach", new { id = item.MASACH })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+}

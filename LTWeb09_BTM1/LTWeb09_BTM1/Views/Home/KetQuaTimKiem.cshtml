@@ -1,0 +1,34 @@
+﻿@model IEnumerable<LTWeb09_BTM1.Models.SACH>
+@{
+    ViewBag.Title = "Kết quả tìm kiếm nâng cao";
+}
+
+<h2 class="text-center text-primary">KẾT QUẢ TÌM KIẾM</h2>
+<hr />
+
+@if (!Model.Any())
+{
+    <p class="text-muted text-center">Không tìm thấy sách phù hợp.</p>
+}
+else
+{
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm border-0">
+                <img src="@Url.Content("~/Content/images/" + item.ANHBIA)"
+                     class="card-img-top"
+                     alt="@item.TENSACH"
+                     style="height: 350px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <p class="card-text fw-semibold">
+                        <strong>Tiêu đề: @item.TENSACH</strong>
+                    </p>
+                    @Html.ActionLink("Xem chi tiết", "ChiTietSach", new { id = item.MASACH })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+}

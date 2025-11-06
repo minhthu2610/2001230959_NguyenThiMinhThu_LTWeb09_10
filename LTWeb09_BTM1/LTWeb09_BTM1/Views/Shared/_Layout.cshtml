@@ -18,16 +18,28 @@
 
             <nav class="navbar">
                 <a href="@Url.Action("Index", "Home")">Trang chủ</a>
-                <a href="#">Đăng ký</a>
-                <a href="#">Đăng nhập</a>
+                    @if (Session["TaiKhoan"] == null)
+                    {
+                        <a href="@Url.Action("DangKy", "Home")">Đăng ký</a>
+                        <a href="@Url.Action("DangNhap", "Home")">Đăng nhập</a>
+                    }
+                    else
+                    {
+                        var kh = (LTWeb09_BTM1.Models.KHACHHANG)Session["TaiKhoan"];
+                        <span class="text-light ms-2">Xin chào, <strong>@kh.HOTEN</strong></span>
+                        <a href="@Url.Action("DangXuat", "Home")" class="ms-3">Đăng xuất</a>
+                    }
                 <a href="#">Liên hệ</a>
+                <a href="@Url.Action("TimKiemNangCao", "Home")" class="text-light ms-3">Tìm kiếm nâng cao</a>
             </nav>
 
-            <div class="search-box">
-                <input type="text" placeholder="Tìm kiếm..." />
-                <button class="btn btn-light text-danger fw-bold" type="submit">
-                    <i class="bi bi-search"></i>
-                </button>
+            <div>
+                <form action="@Url.Action("TimKiem", "Home")" method="get" class="search-box">
+                    <input type="text" name="tuKhoa" placeholder="Tìm kiếm..." />
+                    <button class="btn btn-light text-danger fw-bold" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
             </div>
         </header>
         <main class="container-fluid mt-4">

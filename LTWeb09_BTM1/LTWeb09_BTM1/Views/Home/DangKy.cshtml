@@ -1,0 +1,40 @@
+﻿@model LTWeb09_BTM1.Models.KHACHHANG
+
+@using (Html.BeginForm("DangKy", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label>Họ tên</label>
+        <input type="text" name="HOTEN" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Tên đăng nhập</label>
+        <input type="text" name="TAIKHOAN" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Mật khẩu</label>
+        <input type="password" name="MATKHAU" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Nhập lại mật khẩu</label>
+        <input type="password" name="matkhau2" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Email</label>
+        <input type="email" name="EMAIL" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Địa chỉ</label>
+        <input type="text" name="DIACHI" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Điện thoại</label>
+        <input type="text" name="DIENTHOAI" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Đăng ký</button>
+}
+
+@if (ViewBag.ThongBao != null)
+{
+    <div class="alert alert-danger mt-2">@ViewBag.ThongBao</div>
+}

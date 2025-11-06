@@ -2,12 +2,11 @@
 @{
     ViewBag.Title = "DSMenu_NXB";
 }
-
 <ul class="nav flex-column">
     @foreach (var item in Model)
     {
        <li>
-           @Html.ActionLink(item.TENNXH, "NXBTheoTen", "Home", new { ten = item.MANXB }, new { @class = "nav-link" })
+           @Html.ActionLink(item.TENNXH, "SachTheoNXB", "Home", new { id = item.MANXB }, new { @class = "nav-link" })
        </li>
       }
 </ul>

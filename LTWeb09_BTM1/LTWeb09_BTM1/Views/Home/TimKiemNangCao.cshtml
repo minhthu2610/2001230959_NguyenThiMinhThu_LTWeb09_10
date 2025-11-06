@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Tìm kiếm nâng cao";
+}
+
+<h2 class="text-center text-danger">TÌM KIẾM</h2>
+<hr />
+
+<form action="@Url.Action("KetQuaTimKiem", "Home")" method="post" class="mt-4">
+    <div class="mb-3">
+        <label for="tenSach" class="form-label fw-bold">Tên sách</label>
+        <input type="text" name="tenSach" id="tenSach" class="form-control" placeholder="Từ khóa..." />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label fw-bold">Chủ đề</label>
+        @Html.DropDownList("maCD", (SelectList)ViewBag.ChuDeList, "— Chọn chủ đề —", new { @class = "form-select" })
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label fw-bold">Giá bán</label><br />
+        <div class="form-check">
+            <input type="radio" class="form-check-input" name="mucGia" value="duoi70" id="gia1" />
+            <label for="gia1" class="form-check-label">0-70.000VNĐ</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" name="mucGia" value="71den100" id="gia2" />
+            <label for="gia2" class="form-check-label">70.000-100.000VNĐ</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" name="mucGia" value="tren100" id="gia3" />
+            <label for="gia3" class="form-check-label">Trên 100.000VNĐ</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-success">Search</button>
+</form>

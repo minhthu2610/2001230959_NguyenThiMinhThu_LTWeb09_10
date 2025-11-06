@@ -114,7 +114,9 @@ INSERT INTO CHUDE VALUES
 (4, N'Khoa Học'),
 (5, N'Tâm Lý - Kỹ Năng Sống'),
 (6, N'Văn Học Nước Ngoài');
-
+INSERT INTO CHUDE VALUES
+(7, N'Du Lịch'),
+(8,N'Luật')
 -- ====== SÁCH ======
 INSERT INTO SACH VALUES
 (1, N'Mắt Biếc', 85000, N'Câu chuyện tình cảm học trò', N'matbiec.png', '2023-05-01', 500, 3, 1, 1),
